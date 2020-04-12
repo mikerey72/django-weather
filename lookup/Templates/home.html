@@ -3,8 +3,42 @@
 
     {% block content%}
 
-    <h1>Hello World!!!!!</h1>
-    <h2>THIS IS THE HOME Page</h2>
+
+
+
+    <br/>
+
+    {% if zipcode %}
+        {{ zipcode }}
+    {% endif %}
+
+
+   {% if api %}
+        {% if api == "Error..." %}
+            There was an error, please try again...
+        {% else %}
+
+            <div class="jumbotron {{ category_color }}">
+                <h1 class="display-4">Local Air Quality<br/></h1>
+                <p class="lead">Date Observed: {{ api.0.DateObserved }}<br/></p>
+                <p class="lead">Air Quality: {{ api.0.AQI }}<br/></p>
+                <p class="lead">City: {{ api.0.ReportingArea }}<br/></p>
+                <p class="lead">State: {{ api.0.StateCode }}<br/></p>
+                <p class="lead">Status: {{ api.0.Category.Name }}<br/></p>
+
+                <p>{{ category_description }}</p>
+
+            </div>
+            <br/>
+
+
+
+
+            <br/>
+        {% endif %}
+
+    {% endif %}
+
 
     {% endblock %}
 
